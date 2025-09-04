@@ -11,6 +11,7 @@
       --bg: #0f0f14;
       --text: #fff;
       --sub: #bfc3d9;
+      --accent: #ff4d6d;
     }
     html, body {
       height: 100%;
@@ -29,6 +30,12 @@
       justify-content: center;
       padding: 0;
       position: relative;
+    }
+    h1#title {
+      font-size: clamp(48px, 10vw, 120px);
+      color: var(--accent);
+      margin: 20px 0;
+      text-align: center;
     }
     p.lead{color:var(--sub); font-size:clamp(16px,2.5vw,18px); text-align:center; margin-bottom:20px;}
     .timer{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:20px;}
@@ -60,6 +67,9 @@
 <body>
   <div class="hearts-bg" id="hearts" aria-hidden="true"></div>
 
+  <!-- Título no topo -->
+  <h1 id="title">&lt;3</h1>
+
   <p class="lead">Tempo desde <strong>6 de setembro de 2024, 00:00</strong>, hora de Évora.</p>
 
   <section class="timer" aria-live="polite" aria-atomic="true">
@@ -85,7 +95,6 @@
     </div>
   </section>
 
-  <!-- Foto agora abaixo do temporizador -->
   <img id="togglePhoto" src="https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image00001.jpeg" alt="A nossa foto">
 
   <p class="lead" id="meta"></p>
@@ -116,7 +125,6 @@
       $("segundos").textContent = pad(segundos);
     }
 
-    // === Foto clicável aleatória ===
     const photo = $("togglePhoto");
     const totalImages = 30;
     photo.dataset.index = 1;
@@ -132,7 +140,6 @@
       photo.dataset.index = nextIndex;
     });
 
-    // === Hearts flutuantes ===
     function spawnHearts(){
       const container = $("hearts");
       for(let i=0;i<3;i++){
@@ -151,3 +158,4 @@
   </script>
 </body>
 </html>
+
