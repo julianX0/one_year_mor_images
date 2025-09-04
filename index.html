@@ -31,35 +31,74 @@
       padding: 0;
       position: relative;
     }
+    /* Smaller title */
     h1#title {
-      font-size: clamp(48px, 10vw, 120px);
+      font-size: clamp(36px, 8vw, 80px);
       color: var(--accent);
-      margin: 20px 0;
+      margin: 15px 0;
       text-align: center;
     }
-    p.lead{color:var(--sub); font-size:clamp(16px,2.5vw,18px); text-align:center; margin-bottom:20px;}
-    .timer{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:20px;}
-    .unit{background:linear-gradient(180deg,#171727,#12121b); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:22px; text-align:center;}
-    .value{font-size: clamp(36px,7vw,56px); font-weight:900;}
-    .label{margin-top:6px; font-size:14px; color:var(--sub); text-transform:uppercase;}
+    p.lead {
+      color: var(--sub);
+      font-size: clamp(14px, 2vw, 16px);
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .timer {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+    .unit {
+      background: linear-gradient(180deg,#171727,#12121b);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+    }
+    .value {
+      font-size: clamp(24px, 5vw, 40px);
+      font-weight: 900;
+    }
+    .label {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--sub);
+      text-transform: uppercase;
+    }
     img#togglePhoto {
-      max-width: 500px;
+      max-width: 400px;
       width: 100%;
       border-radius: 20px;
       cursor: pointer;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
-    .hearts-bg{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
-    .heart{position:absolute; bottom:-40px; font-size:22px; opacity:.7; animation: floatUp var(--dur) linear infinite; left:var(--x);}
-    @keyframes floatUp{to{transform: translateY(-110vh); opacity:0;}}
-    /* Footer credits */
-    #credits{
+    .hearts-bg {
+      position:absolute;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+    }
+    .heart {
+      position:absolute;
+      bottom:-40px;
+      font-size:16px;
+      opacity:.7;
+      animation: floatUp var(--dur) linear infinite;
+      left:var(--x);
+    }
+    @keyframes floatUp {
+      to {transform: translateY(-110vh); opacity:0;}
+    }
+    #credits {
       color: var(--sub);
-      font-size: 14px;
+      font-size: 12px;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 10px;
       position: absolute;
-      bottom: 10px;
+      bottom: 8px;
       width: 100%;
     }
   </style>
@@ -67,7 +106,6 @@
 <body>
   <div class="hearts-bg" id="hearts" aria-hidden="true"></div>
 
-  <!-- Título no topo -->
   <h1 id="title">&lt;3</h1>
 
   <p class="lead">Tempo desde <strong>6 de setembro de 2024, 00:00</strong>, hora de Évora.</p>
@@ -98,8 +136,6 @@
   <img id="togglePhoto" src="https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image00001.jpeg" alt="A nossa foto">
 
   <p class="lead" id="meta"></p>
-
-  <!-- Footer credits -->
   <p id="credits">- Produzido e editado por julianX0 -</p>
 
   <script>
@@ -135,7 +171,6 @@
       do {
         nextIndex = Math.floor(Math.random() * totalImages) + 1;
       } while(nextIndex === currentIndex);
-
       photo.src = `https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image${String(nextIndex).padStart(5,'0')}.jpeg`;
       photo.dataset.index = nextIndex;
     });
@@ -158,4 +193,5 @@
   </script>
 </body>
 </html>
+
 
