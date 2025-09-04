@@ -29,7 +29,13 @@
     .unit{background:linear-gradient(180deg,#171727,#12121b); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:22px; text-align:center;}
     .value{font-size: clamp(36px,7vw,56px); font-weight:900;}
     .label{margin-top:6px; font-size:14px; color:var(--sub); text-transform:uppercase;}
-    img#togglePhoto{max-width:300px; border-radius:20px; cursor:pointer; margin-bottom:30px;}
+    img#togglePhoto {
+    max-width: 600px; /* bigger size */
+    width: 100%;       /* responsive */
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    }
     .hearts-bg{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
     .heart{position:absolute; bottom:-40px; font-size:22px; opacity:.7; animation: floatUp var(--dur) linear infinite; left:var(--x);}
     @keyframes floatUp{to{transform: translateY(-110vh); opacity:0;}}
@@ -125,3 +131,4 @@
   </script>
 </body>
 </html>
+
