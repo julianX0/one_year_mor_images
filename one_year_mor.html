@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O Nosso Tempo Desde 6 Set 2024</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>❤️</text></svg>">
+  <meta name="description" content="Uma página fofa e minimalista a mostrar o tempo desde 6 de Setembro de 2024, 00:00." />
+  <style>
+    :root{
+      --bg: #0f0f14;
+      --card: #15151d;
+      --soft: #2a2a3a;
+      --text: #fff;
+      --sub: #bfc3d9;
+      --accent: #ff4d6d;
+      --accent-2: #ff99ac;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 24px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(255, 77, 109,.12), transparent 60%),
+        radial-gradient(900px 700px at 110% 10%, rgba(255, 153, 172,.12), transparent 55%),
+        linear-gradient(180deg, #0d0d13, #0f0f14);
+      display:grid;
+      place-items:center;
+      padding:24px;
+    }
+    .flare{
+      position:absolute; inset:-20% -30% auto auto; width:560px; height:560px; filter:blur(60px);
+      background:radial-gradient(circle at 50% 50%, rgba(255,77,109,.35), rgba(255,153,172,.15) 35%, transparent 60%);
+      pointer-events:none; mix-blend-mode:screen;
+    }
+    header{
+      padding:28px 28px 0 28px;
+      display:flex; align-items:center; gap:14px;
+    }
+    .badge{
+      background:rgba(255,255,255,.06); color:var(--sub);
+      border:1px solid rgba(255,255,255,.08);
+      padding:6px 12px; border-radius:999px; font-size:14px; letter-spacing:.2px;
+    }
+    h1{
+      margin:10px 28px 0 28px; font-size:clamp(28px, 5vw, 44px); line-height:1.15; font-weight:800;
+      background:linear-gradient(90deg, #fff, #ffd8e0 45%, #ffffff 90%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+    }
+    p.lead{
+      margin:10px 28px 0 28px; color:var(--sub); font-size:clamp(16px, 2.5vw, 18px)
+    }
+    .timer {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin: 26px;
+    margin-top: 24px;
+    flex-wrap: wrap; /* se for num ecrã pequeno, quebra para a linha seguinte */
+    }
+    .unit{
+      background:linear-gradient(180deg,#171727,#12121b); border:1px solid rgba(255,255,255,.08);
+      border-radius:20px; padding:22px; text-align:center; position:relative; overflow:hidden;
+    }
+    .value{ font-size: clamp(36px, 7vw, 56px); font-weight:900; letter-spacing: .5px; }
+    .label{ margin-top:6px; font-size:14px; color:var(--sub); letter-spacing:.6px; text-transform:uppercase }
+
+    .big-days{
+      margin: 8px 28px 0 28px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+    }
+    .big-days .num{
+      font-weight:900; font-size: clamp(28px, 6vw, 40px);
+      padding:.25em .5em; border-radius:14px; border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg,#171727,#12121b);
+    }
+    .note{ margin: 10px 28px 22px 28px; color:var(--sub); font-size:14px }
+
+    .footer{
+      padding:18px 24px 26px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;
+      border-top:1px solid rgba(255,255,255,.06);
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+    }
+    .mini{ color:var(--sub); font-size:13px }
+    .hearts{ display:inline-flex; gap:6px }
+
+    /* Floating hearts */
+    .hearts-bg{ position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+    .heart{ position:absolute; bottom:-40px; font-size:22px; opacity:.7; animation: floatUp var(--dur) linear infinite; left:var(--x) }
+    @keyframes floatUp{ to{ transform: translateY(-110vh); opacity:0 } }
+
+    /* Responsive */
+    @media (max-width:700px){
+      .timer{ grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <main role="main" aria-label="Temporizador do amor">
+    <div class="flare" aria-hidden="true"></div>
+    <div class="hearts-bg" id="hearts" aria-hidden="true"></div>
+    <p class="lead">Tempo desde <strong>6 de setembro de 2024, 00:00</strong>, hora de Évora.</p>
+
+    <section class="timer" aria-live="polite" aria-atomic="true">
+      <div class="unit" aria-label="Anos">
+        <div class="value" id="anos">0</div>
+        <div class="label">anos</div>
+      </div>
+      <div class="unit" aria-label="Dias">
+        <div class="value" id="days">0</div>
+        <div class="label">dias</div>
+      </div>
+      <div class="unit" aria-label="Horas">
+        <div class="value" id="hours">00</div>
+        <div class="label">horas</div>
+      </div>
+      <div class="unit" aria-label="Minutos">
+        <div class="value" id="minutes">00</div>
+        <div class="label">minutos</div>
+      </div>
+      <div class="unit" aria-label="Segundos">
+        <div class="value" id="seconds">00</div>
+        <div class="label">segundos</div>
+      </div>
+    </section>
+
+    <p class="note" id="meta"></p>
+
+  <script>
+    // === Configuração ===
+    // 6 de setembro de 2024, 00:00, hora de Lisboa
+    const START = new Date("2024-09-06T00:00:00+01:00");
+
+    // Se preferires usar UTC:
+    // const START = new Date(Date.UTC(2024, 8, 6, 0, 0, 0));
+
+    const $ = id => document.getElementById(id);
+    const pad = n => String(n).padStart(2, '0');
+
+    function renderMeta(){
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'fuso horário';
+      const startStr = START.toLocaleString(undefined, {
+        year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+      });
+      const nowStr = new Date().toLocaleString(undefined, {
+        year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'
+      });
+    }
+
+    function update(){
+      const now = new Date();
+      let diff = now - START; // milissegundos decorridos
+      if (diff < 0) diff = 0;
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const totalDays = Math.floor(totalSeconds / 86400);
+      const days = totalDays;
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      $("days").textContent = days.toLocaleString();
+      $("hours").textContent = pad(hours);
+      $("minutes").textContent = pad(minutes);
+      $("seconds").textContent = pad(seconds);
+    }
+
+    // inicial
+    renderMeta();
+    update();
+    // spawnHearts(); <-- se tiveres a função para corações, ativa aqui
+    setInterval(update, 1000);
+
+    document.addEventListener('visibilitychange', ()=>{ if (!document.hidden) renderMeta(); });
+  </script>
+</body>
+</html>
