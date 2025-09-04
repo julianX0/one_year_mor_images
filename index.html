@@ -40,31 +40,31 @@
 
   <p class="lead">Tempo desde <strong>6 de setembro de 2024, 00:00</strong>, hora de Évora.</p>
 
-  <!-- Foto que troca ao clicar -->
-  <img id="togglePhoto" src="one_year_mor_images/foto1.jpg" alt="A nossa foto">
+<section class="timer" aria-live="polite" aria-atomic="true">
+  <div class="unit" aria-label="Anos">
+    <div class="value" id="anos">0</div>
+    <div class="label">anos</div>
+  </div>
+  <div class="unit" aria-label="Dias">
+    <div class="value" id="dias">0</div>
+    <div class="label">dias</div>
+  </div>
+  <div class="unit" aria-label="Horas">
+    <div class="value" id="horas">00</div>
+    <div class="label">horas</div>
+  </div>
+  <div class="unit" aria-label="Minutos">
+    <div class="value" id="minutos">00</div>
+    <div class="label">minutos</div>
+  </div>
+  <div class="unit" aria-label="Segundos">
+    <div class="value" id="segundos">00</div>
+    <div class="label">segundos</div>
+  </div>
+</section>
 
-  <section class="timer" aria-live="polite" aria-atomic="true">
-    <div class="unit" aria-label="Anos">
-      <div class="value" id="anos">0</div>
-      <div class="label">anos</div>
-    </div>
-    <div class="unit" aria-label="Dias">
-      <div class="value" id="dias">0</div>
-      <div class="label">dias</div>
-    </div>
-    <div class="unit" aria-label="Horas">
-      <div class="value" id="horas">00</div>
-      <div class="label">horas</div>
-    </div>
-    <div class="unit" aria-label="Minutos">
-      <div class="value" id="minutos">00</div>
-      <div class="label">minutos</div>
-    </div>
-    <div class="unit" aria-label="Segundos">
-      <div class="value" id="segundos">00</div>
-      <div class="label">segundos</div>
-    </div>
-  </section>
+<!-- Foto agora abaixo do temporizador -->
+<img id="togglePhoto" src="one_year_mor_images/foto1.jpg" alt="A nossa foto">
 
   <p class="lead" id="meta"></p>
 
@@ -128,5 +128,6 @@
   </script>
 </body>
 </html>
+
 
 
