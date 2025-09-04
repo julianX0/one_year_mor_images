@@ -12,39 +12,49 @@
       --text: #fff;
       --sub: #bfc3d9;
     }
-   html, body {
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  font-family: ui-sans-serif, system-ui, sans-serif;
-  color: var(--text);
-  background:
-    radial-gradient(1200px 800px at 10% -10%, rgba(255,77,109,.12), transparent 60%),
-    radial-gradient(900px 700px at 110% 10%, rgba(255,153,172,.12), transparent 55%),
-    linear-gradient(180deg, #0d0d13, #0f0f14);
-  background-size: cover; /* ensures full coverage */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0; /* remove padding limiting the background */
-}
-
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(255,77,109,.12), transparent 60%),
+        radial-gradient(900px 700px at 110% 10%, rgba(255,153,172,.12), transparent 55%),
+        linear-gradient(180deg, #0d0d13, #0f0f14);
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      position: relative;
+    }
     p.lead{color:var(--sub); font-size:clamp(16px,2.5vw,18px); text-align:center; margin-bottom:20px;}
     .timer{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:20px;}
     .unit{background:linear-gradient(180deg,#171727,#12121b); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:22px; text-align:center;}
     .value{font-size: clamp(36px,7vw,56px); font-weight:900;}
     .label{margin-top:6px; font-size:14px; color:var(--sub); text-transform:uppercase;}
     img#togglePhoto {
-    max-width: 500px; /* bigger size */
-    width: 100%;       /* responsive */
-    border-radius: 20px;
-    cursor: pointer;
-    margin-bottom: 30px;
+      max-width: 500px;
+      width: 100%;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-bottom: 30px;
     }
     .hearts-bg{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
     .heart{position:absolute; bottom:-40px; font-size:22px; opacity:.7; animation: floatUp var(--dur) linear infinite; left:var(--x);}
     @keyframes floatUp{to{transform: translateY(-110vh); opacity:0;}}
+    /* Footer credits */
+    #credits{
+      color: var(--sub);
+      font-size: 14px;
+      text-align: center;
+      margin-top: 20px;
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
@@ -80,6 +90,9 @@
 
   <p class="lead" id="meta"></p>
 
+  <!-- Footer credits -->
+  <p id="credits">- Produzido e editado por julianX0 -</p>
+
   <script>
     const START = new Date("2024-09-06T00:00:00+01:00");
     const $ = id => document.getElementById(id);
@@ -104,22 +117,20 @@
     }
 
     // === Foto clicável aleatória ===
-const photo = $("togglePhoto");
-const totalImages = 30;
+    const photo = $("togglePhoto");
+    const totalImages = 30;
+    photo.dataset.index = 1;
 
-// Initialize current index based on first image
-photo.dataset.index = 1;
+    photo.addEventListener("click", () => {
+      let currentIndex = parseInt(photo.dataset.index);
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * totalImages) + 1;
+      } while(nextIndex === currentIndex);
 
-photo.addEventListener("click", () => {
-  let currentIndex = parseInt(photo.dataset.index);
-  let nextIndex;
-  do {
-    nextIndex = Math.floor(Math.random() * totalImages) + 1;
-  } while(nextIndex === currentIndex);
-
-  photo.src = `https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image${String(nextIndex).padStart(5,'0')}.jpeg`;
-  photo.dataset.index = nextIndex;
-});
+      photo.src = `https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image${String(nextIndex).padStart(5,'0')}.jpeg`;
+      photo.dataset.index = nextIndex;
+    });
 
     // === Hearts flutuantes ===
     function spawnHearts(){
@@ -140,9 +151,3 @@ photo.addEventListener("click", () => {
   </script>
 </body>
 </html>
-
-
-
-
-
-
