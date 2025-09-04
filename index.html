@@ -98,19 +98,18 @@
     }
 
     // === Foto clicável aleatória ===
-    const photo = $("togglePhoto");
-    const totalImages = 30;
-    const images = [];
-    for (let i = 1; i <= totalImages; i++){
-      const num = String(i).padStart(5,"0");
-      images.push(`https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image${num}.jpeg`);
-    }
-    photo.addEventListener("click", () => {
-      let newImg;
-      do { newImg = images[Math.floor(Math.random()*totalImages)]; } 
-      while(newImg === photo.src);
-      photo.src = newImg;
-    });
+const photo = $("togglePhoto");
+const totalImages = 30;
+
+photo.addEventListener("click", () => {
+  let currentIndex = parseInt(photo.dataset.index) || 1;
+  let nextIndex;
+  do {
+    nextIndex = Math.floor(Math.random() * totalImages) + 1;
+  } while(nextIndex === currentIndex);
+  photo.src = `https://raw.githubusercontent.com/julianX0/one_year_mor_images/refs/heads/main/one_year_mor_images/image${String(nextIndex).padStart(5,'0')}.jpeg`;
+  photo.dataset.index = nextIndex;
+});
 
     // === Hearts flutuantes ===
     function spawnHearts(){
@@ -131,4 +130,5 @@
   </script>
 </body>
 </html>
+
 
