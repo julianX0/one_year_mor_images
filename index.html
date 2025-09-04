@@ -30,9 +30,10 @@ html, body {
   padding: 10px;
   overflow-x: hidden;
 }
-h1 {
-  font-size: clamp(40px, 6vw, 60px);
-  margin: 20px 0 10px 0;
+h1.title{
+  font-size: clamp(24px,5vw,36px);
+  margin: 10px 0;
+  color: #ff4d6d; /* pink */
 }
 p.lead{color:var(--sub); font-size:clamp(14px,2vw,16px); text-align:center; margin-bottom:10px;}
 .timer{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:15px;}
@@ -65,7 +66,7 @@ footer{margin-top:auto; color:var(--sub); font-size:12px; text-align:center; mar
 <body>
 <div class="hearts-bg" id="hearts" aria-hidden="true"></div>
 
-<h1>&lt;3</h1>
+<h1 class="title">&lt;3</h1>
 
 <p class="lead">Tempo desde <strong>6 de setembro de 2024, 00:00</strong>, hora de Évora.</p>
 
@@ -189,3 +190,4 @@ setInterval(update,1000);
 </script>
 </body>
 </html>
+
