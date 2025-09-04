@@ -40,46 +40,38 @@
 
   <p class="lead">Tempo desde <strong>6 de setembro de 2024, 00:00</strong>, hora de Évora.</p>
 
-<section class="timer" aria-live="polite" aria-atomic="true">
-  <div class="unit" aria-label="Anos">
-    <div class="value" id="anos">0</div>
-    <div class="label">anos</div>
-  </div>
-  <div class="unit" aria-label="Dias">
-    <div class="value" id="dias">0</div>
-    <div class="label">dias</div>
-  </div>
-  <div class="unit" aria-label="Horas">
-    <div class="value" id="horas">00</div>
-    <div class="label">horas</div>
-  </div>
-  <div class="unit" aria-label="Minutos">
-    <div class="value" id="minutos">00</div>
-    <div class="label">minutos</div>
-  </div>
-  <div class="unit" aria-label="Segundos">
-    <div class="value" id="segundos">00</div>
-    <div class="label">segundos</div>
-  </div>
-</section>
+  <section class="timer" aria-live="polite" aria-atomic="true">
+    <div class="unit" aria-label="Anos">
+      <div class="value" id="anos">0</div>
+      <div class="label">anos</div>
+    </div>
+    <div class="unit" aria-label="Dias">
+      <div class="value" id="dias">0</div>
+      <div class="label">dias</div>
+    </div>
+    <div class="unit" aria-label="Horas">
+      <div class="value" id="horas">00</div>
+      <div class="label">horas</div>
+    </div>
+    <div class="unit" aria-label="Minutos">
+      <div class="value" id="minutos">00</div>
+      <div class="label">minutos</div>
+    </div>
+    <div class="unit" aria-label="Segundos">
+      <div class="value" id="segundos">00</div>
+      <div class="label">segundos</div>
+    </div>
+  </section>
 
-<!-- Foto agora abaixo do temporizador -->
-<img id="togglePhoto" src="one_year_mor_images/foto1.jpg" alt="A nossa foto">
+  <!-- Foto agora abaixo do temporizador -->
+  <img id="togglePhoto" src="https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image00001.jpeg" alt="A nossa foto">
 
   <p class="lead" id="meta"></p>
 
   <script>
-    // === Configuração ===
-    const START = new Date("2024-09-06T00:00:00+01:00"); // Lisboa/Évora UTC+1
-
+    const START = new Date("2024-09-06T00:00:00+01:00");
     const $ = id => document.getElementById(id);
     const pad = n => String(n).padStart(2,'0');
-
-    function renderMeta(){
-      const tz = "Europe/Lisbon";
-      const startStr = START.toLocaleString("pt-PT",{timeZone: tz, year:"numeric", month:"long", day:"numeric", hour:"2-digit", minute:"2-digit"});
-      const nowStr = new Date().toLocaleString("pt-PT",{timeZone: tz, year:"numeric", month:"long", day:"numeric", hour:"2-digit", minute:"2-digit"});
-    }
 
     function update(){
       const now = new Date();
@@ -99,15 +91,22 @@
       $("segundos").textContent = pad(segundos);
     }
 
-    // === Foto clicável ===
+    // === Foto clicável aleatória ===
     const photo = $("togglePhoto");
-    const img1 = "one_year_mor_images/foto1.jpg";
-    const img2 = "one_year_mor_images/foto2.jpg";
+    const totalImages = 30;
+    const images = [];
+    for (let i = 1; i <= totalImages; i++){
+      const num = String(i).padStart(5,"0");
+      images.push(`https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image${num}.jpeg`);
+    }
     photo.addEventListener("click", () => {
-      photo.src = (photo.src.includes("foto1.jpg")) ? img2 : img1;
+      let newImg;
+      do { newImg = images[Math.floor(Math.random()*totalImages)]; } 
+      while(newImg === photo.src);
+      photo.src = newImg;
     });
 
-    // === Hearts flutuantes (simples) ===
+    // === Hearts flutuantes ===
     function spawnHearts(){
       const container = $("hearts");
       for(let i=0;i<3;i++){
@@ -120,14 +119,9 @@
       }
     }
 
-    renderMeta();
     update();
     spawnHearts();
     setInterval(update,1000);
-    document.addEventListener('visibilitychange',()=>{if(!document.hidden) renderMeta();});
   </script>
 </body>
 </html>
-
-
-
