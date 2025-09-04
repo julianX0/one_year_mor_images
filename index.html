@@ -12,18 +12,24 @@
       --text: #fff;
       --sub: #bfc3d9;
     }
-    *{box-sizing:border-box;}
-    html, body{height:100%; margin:0; font-family: ui-sans-serif, system-ui, sans-serif; background:
-      radial-gradient(1200px 800px at 10% -10%, rgba(255,77,109,.12), transparent 60%),
-      radial-gradient(900px 700px at 110% 10%, rgba(255,153,172,.12), transparent 55%),
-      linear-gradient(180deg, #0d0d13, #0f0f14);
-      color:var(--text);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-    }
+   html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 800px at 10% -10%, rgba(255,77,109,.12), transparent 60%),
+    radial-gradient(900px 700px at 110% 10%, rgba(255,153,172,.12), transparent 55%),
+    linear-gradient(180deg, #0d0d13, #0f0f14);
+  background-size: cover; /* ensures full coverage */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* remove padding limiting the background */
+}
+
     p.lead{color:var(--sub); font-size:clamp(16px,2.5vw,18px); text-align:center; margin-bottom:20px;}
     .timer{display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-bottom:20px;}
     .unit{background:linear-gradient(180deg,#171727,#12121b); border:1px solid rgba(255,255,255,.08); border-radius:20px; padding:22px; text-align:center;}
@@ -134,6 +140,7 @@ photo.addEventListener("click", () => {
   </script>
 </body>
 </html>
+
 
 
 
