@@ -79,7 +79,6 @@
       const tz = "Europe/Lisbon";
       const startStr = START.toLocaleString("pt-PT",{timeZone: tz, year:"numeric", month:"long", day:"numeric", hour:"2-digit", minute:"2-digit"});
       const nowStr = new Date().toLocaleString("pt-PT",{timeZone: tz, year:"numeric", month:"long", day:"numeric", hour:"2-digit", minute:"2-digit"});
-      $("meta").textContent = `Começou em ${startStr} • Hora de Portugal Continental • Agora: ${nowStr}`;
     }
 
     function update(){
@@ -129,4 +128,5 @@
   </script>
 </body>
 </html>
+
 
