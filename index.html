@@ -1,230 +1,191 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Para a Chiguinha</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>❤️</text></svg>">
-  <meta name="description" content="Contador de tempo desde 6 Setembro 2024" />
-  <style>
-    :root{
-      --bg: #0f0f14;
-      --text: #fff;
-      --sub: #bfc3d9;
-    }
-    html, body {
-      height: 100%;
-      width: 100%;
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(800px 600px at 10% -10%, rgba(255,77,109,.12), transparent 60%),
-        radial-gradient(600px 500px at 110% 10%, rgba(255,153,172,.12), transparent 55%),
-        linear-gradient(180deg, #0d0d13, #0f0f14);
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-    }
-
-    h1.title{
-      font-size: clamp(24px,5vw,36px);
-      margin: 10px 0;
-    }
-
-    p.lead{
-      color: var(--sub);
-      font-size: clamp(14px,2vw,16px);
-      text-align: center;
-      margin-bottom: 15px;
-    }
-
-    .timer{
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom: 15px;
-    }
-
-    .unit{
-      background: linear-gradient(180deg,#171727,#12121b);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 14px;
-      padding: 14px;
-      text-align:center;
-    }
-
-    .value{
-      font-size: clamp(28px,5vw,40px);
-      font-weight: 900;
-    }
-
-    .label{
-      margin-top: 4px;
-      font-size: 12px;
-      color: var(--sub);
-      text-transform: uppercase;
-    }
-
-    img#togglePhoto {
-      max-width: 400px;
-      width: 90%;
-      border-radius: 20px;
-      cursor: pointer;
-      margin-bottom: 20px;
-    }
-
-    .hearts-bg{
-      position:absolute;
-      inset:0;
-      overflow:hidden;
-      pointer-events:none;
-    }
-
-    .heart{
-      position:absolute;
-      bottom:-40px;
-      font-size:16px;
-      opacity:.7;
-      animation: floatUp var(--dur) linear infinite;
-      left:var(--x);
-    }
-
-    @keyframes floatUp{to{transform: translateY(-110vh); opacity:0;}}
-
-    footer{
-      font-size: 12px;
-      color: var(--sub);
-      margin-top: 10px;
-      text-align: center;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Para a Chiguinha</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>❤️</text></svg>">
+<meta name="description" content="Contador de tempo desde 6 Setembro 2024" />
+<style>
+:root{
+  --bg: #0f0f14;
+  --text: #fff;
+  --sub: #bfc3d9;
+}
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(1200px 800px at 10% -10%, rgba(255,77,109,.12), transparent 60%),
+    radial-gradient(900px 700px at 110% 10%, rgba(255,153,172,.12), transparent 55%),
+    linear-gradient(180deg, #0d0d13, #0f0f14);
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  overflow-x: hidden;
+}
+h1 {
+  font-size: clamp(40px, 6vw, 60px);
+  margin: 20px 0 10px 0;
+}
+p.lead{color:var(--sub); font-size:clamp(14px,2vw,16px); text-align:center; margin-bottom:10px;}
+.timer{display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:15px;}
+.unit{background:linear-gradient(180deg,#171727,#12121b); border:1px solid rgba(255,255,255,.08); border-radius:15px; padding:15px; text-align:center;}
+.value{font-size: clamp(28px,5vw,40px); font-weight:900;}
+.label{margin-top:4px; font-size:12px; color:var(--sub); text-transform:uppercase;}
+img#togglePhoto {
+  max-width: 400px;
+  width: 100%;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+button#playBtn {
+  margin-bottom: 15px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  background-color: #ff4d6d;
+  color: white;
+}
+.hearts-bg{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
+.heart{position:absolute; bottom:-40px; font-size:20px; opacity:.7; animation: floatUp var(--dur) linear infinite; left:var(--x);}
+@keyframes floatUp{to{transform: translateY(-110vh); opacity:0;}}
+footer{margin-top:auto; color:var(--sub); font-size:12px; text-align:center; margin-bottom:5px;}
+</style>
 </head>
 <body>
-  <div class="hearts-bg" id="hearts" aria-hidden="true"></div>
+<div class="hearts-bg" id="hearts" aria-hidden="true"></div>
 
-  <h1 class="title">&lt;3</h1>
-  <p class="lead">Tempo desde <strong>6 de setembro de 2024, 00:00</strong>, hora de Évora.</p>
+<h1>&lt;3</h1>
 
-  <section class="timer" aria-live="polite" aria-atomic="true">
-    <div class="unit" aria-label="Anos">
-      <div class="value" id="anos">0</div>
-      <div class="label">anos</div>
-    </div>
-    <div class="unit" aria-label="Dias">
-      <div class="value" id="dias">0</div>
-      <div class="label">dias</div>
-    </div>
-    <div class="unit" aria-label="Horas">
-      <div class="value" id="horas">00</div>
-      <div class="label">horas</div>
-    </div>
-    <div class="unit" aria-label="Minutos">
-      <div class="value" id="minutos">00</div>
-      <div class="label">minutos</div>
-    </div>
-    <div class="unit" aria-label="Segundos">
-      <div class="value" id="segundos">00</div>
-      <div class="label">segundos</div>
-    </div>
-  </section>
+<p class="lead">Tempo desde <strong>6 de setembro de 2024, 00:00</strong>, hora de Évora.</p>
 
-  <img id="togglePhoto" src="https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image00001.jpeg" alt="A nossa foto">
+<section class="timer" aria-live="polite" aria-atomic="true">
+  <div class="unit" aria-label="Anos">
+    <div class="value" id="anos">0</div>
+    <div class="label">anos</div>
+  </div>
+  <div class="unit" aria-label="Dias">
+    <div class="value" id="dias">0</div>
+    <div class="label">dias</div>
+  </div>
+  <div class="unit" aria-label="Horas">
+    <div class="value" id="horas">00</div>
+    <div class="label">horas</div>
+  </div>
+  <div class="unit" aria-label="Minutos">
+    <div class="value" id="minutos">00</div>
+    <div class="label">minutos</div>
+  </div>
+  <div class="unit" aria-label="Segundos">
+    <div class="value" id="segundos">00</div>
+    <div class="label">segundos</div>
+  </div>
+</section>
 
-  <p class="lead" id="meta"></p>
+<!-- Foto -->
+<img id="togglePhoto" src="https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image00001.jpeg" alt="A nossa foto">
 
-  <footer>- Produzido e editado por julianX0 -</footer>
+<!-- Music control -->
+<button id="playBtn">▶️ Tocar música</button>
+<audio id="myAudio" loop></audio>
 
-  <audio id="bgMusic" autoplay></audio>
+<p class="lead" id="meta"></p>
+<footer>-Produzido e editado por julianX0-</footer>
 
-  <script>
-    // === Timer ===
-    const START = new Date("2024-09-06T00:00:00+01:00");
-    const $ = id => document.getElementById(id);
-    const pad = n => String(n).padStart(2,'0');
+<script>
+const START = new Date("2024-09-06T00:00:00+01:00");
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2,'0');
 
-    function update(){
-      const now = new Date();
-      let diff = now - START;
-      if(diff<0) diff=0;
-      const totalSeconds = Math.floor(diff/1000);
-      const totalDays = Math.floor(totalSeconds/86400);
-      const anos = Math.floor(totalDays/365);
-      const dias = totalDays % 365;
-      const horas = Math.floor((totalSeconds%86400)/3600);
-      const minutos = Math.floor((totalSeconds%3600)/60);
-      const segundos = totalSeconds%60;
-      $("anos").textContent = anos.toLocaleString();
-      $("dias").textContent = dias.toLocaleString();
-      $("horas").textContent = pad(horas);
-      $("minutos").textContent = pad(minutos);
-      $("segundos").textContent = pad(segundos);
-    }
+function update(){
+  const now = new Date();
+  let diff = now - START;
+  if(diff<0) diff=0;
+  const totalSeconds = Math.floor(diff/1000);
+  const totalDays = Math.floor(totalSeconds/86400);
+  const anos = Math.floor(totalDays/365);
+  const dias = totalDays % 365;
+  const horas = Math.floor((totalSeconds%86400)/3600);
+  const minutos = Math.floor((totalSeconds%3600)/60);
+  const segundos = totalSeconds%60;
+  $("anos").textContent = anos.toLocaleString();
+  $("dias").textContent = dias.toLocaleString();
+  $("horas").textContent = pad(horas);
+  $("minutos").textContent = pad(minutos);
+  $("segundos").textContent = pad(segundos);
+}
 
-    // === Clickable random photo ===
-    const photo = $("togglePhoto");
-    const totalImages = 30;
-    photo.dataset.index = 1;
+// === Foto clicável aleatória ===
+const photo = $("togglePhoto");
+const totalImages = 30;
+photo.dataset.index = 1;
+photo.addEventListener("click", () => {
+  let currentIndex = parseInt(photo.dataset.index);
+  let nextIndex;
+  do {
+    nextIndex = Math.floor(Math.random() * totalImages) + 1;
+  } while(nextIndex === currentIndex);
+  photo.src = `https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image${String(nextIndex).padStart(5,'0')}.jpeg`;
+  photo.dataset.index = nextIndex;
+});
 
-    photo.addEventListener("click", () => {
-      let currentIndex = parseInt(photo.dataset.index);
-      let nextIndex;
-      do {
-        nextIndex = Math.floor(Math.random() * totalImages) + 1;
-      } while(nextIndex === currentIndex);
+// === Hearts flutuantes ===
+function spawnHearts(){
+  const container = $("hearts");
+  for(let i=0;i<3;i++){
+    const heart = document.createElement("div");
+    heart.className="heart";
+    heart.textContent="❤️";
+    heart.style.setProperty("--x", Math.random()*100+"vw");
+    heart.style.setProperty("--dur", (3+Math.random()*3)+"s");
+    container.appendChild(heart);
+  }
+}
 
-      photo.src = `https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_images/image${String(nextIndex).padStart(5,'0')}.jpeg`;
-      photo.dataset.index = nextIndex;
-    });
+// === Music ===
+const songs = [
+  "https://github.com/julianX0/one_year_mor_images/raw/refs/heads/main/one_year_mor_songs/09.%20Frank%20Ocean%20-%20Back%20(To%20You).mp3",
+  "https://github.com/julianX0/one_year_mor_images/raw/refs/heads/main/one_year_mor_songs/1-01%20Rocket%20Love.mp3",
+  "https://github.com/julianX0/one_year_mor_images/raw/refs/heads/main/one_year_mor_songs/1-02%20Time%20Machine.mp3",
+  "https://github.com/julianX0/one_year_mor_images/raw/refs/heads/main/one_year_mor_songs/1-03%20Heartbreak%20&%20Jet%20Lag.mp3",
+  "https://github.com/julianX0/one_year_mor_images/raw/refs/heads/main/one_year_mor_songs/1-12%20Pyrite%20(Fool's%20Gold).mp3",
+  "https://github.com/julianX0/one_year_mor_images/raw/refs/heads/main/one_year_mor_songs/1-13%20Scared%20Of%20Beautiful.mp3"
+];
+const audio = $("myAudio");
+audio.volume = 0.8;
 
-    // === Hearts floating ===
-    function spawnHearts(){
-      const container = $("hearts");
-      for(let i=0;i<3;i++){
-        const heart = document.createElement("div");
-        heart.className="heart";
-        heart.textContent="❤️";
-        heart.style.setProperty("--x", Math.random()*100+"vw");
-        heart.style.setProperty("--dur", (3+Math.random()*3)+"s");
-        container.appendChild(heart);
-      }
-    }
+// Pick a random song on page load
+audio.src = songs[Math.floor(Math.random()*songs.length)];
+audio.play();
 
-    // === Music random autoplay ===
-    const songs = [
-      "https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_songs/09.%20Frank%20Ocean%20-%20Back%20(To%20You).mp3",
-      "https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_songs/1-01%20Rocket%20Love.mp3",
-      "https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_songs/1-02%20Time%20Machine.mp3",
-      "https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_songs/1-03%20Heartbreak%20&%20Jet%20Lag.mp3",
-      "https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_songs/1-12%20Pyrite%20(Fool's%20Gold).mp3",
-      "https://raw.githubusercontent.com/julianX0/one_year_mor_images/main/one_year_mor_songs/1-13%20Scared%20Of%20Beautiful.mp3"
-    ];
+const playBtn = $("playBtn");
+playBtn.addEventListener("click", () => {
+  if(audio.paused){
+    // random song when playing
+    let nextSong;
+    do { nextSong = songs[Math.floor(Math.random()*songs.length)]; } while(nextSong===audio.src);
+    audio.src = nextSong;
+    audio.play();
+    playBtn.textContent = "⏸️ Pausar música";
+  } else {
+    audio.pause();
+    playBtn.textContent = "▶️ Tocar música";
+  }
+});
 
-    const music = document.getElementById("bgMusic");
-    let currentSong = -1;
-
-    function playRandomSong() {
-      let nextSong;
-      do {
-        nextSong = Math.floor(Math.random() * songs.length);
-      } while(nextSong === currentSong);
-      currentSong = nextSong;
-      music.src = songs[currentSong];
-      music.volume = 0.2; // soft autoplay
-      music.play().catch(() => console.log("Autoplay blocked"));
-    }
-
-    music.addEventListener("ended", playRandomSong);
-
-    // === Init ===
-    update();
-    spawnHearts();
-    setInterval(update,1000);
-    playRandomSong();
-  </script>
+update();
+spawnHearts();
+setInterval(update,1000);
+</script>
 </body>
 </html>
